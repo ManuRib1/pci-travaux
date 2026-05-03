@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nos services — PCI Travaux Dreux</title>
+<link rel="stylesheet" href="style.css">
+<style>
+
+.page-header {
+  padding: 100px 56px 80px;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: end;
+}
+.page-header h1 { margin: .8rem 0; }
+.page-header .lead { max-width: 400px; }
+
+.services-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--line);
+}
+.service-detail {
+  padding: 72px 56px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.service-detail:nth-child(2n) { border-right: none; }
+.service-num {
+  font-family: 'Fraunces', serif;
+  font-size: 3.5rem;
+  font-weight: 600;
+  color: var(--o);
+  opacity: .25;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+.service-detail h2 {
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
+  margin-bottom: 1rem;
+}
+.service-detail p {
+  font-size: 15px;
+  color: var(--mid);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+.service-detail ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+.service-detail ul li {
+  font-size: 14px;
+  color: var(--mid);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.service-detail ul li::before {
+  content: '';
+  width: 4px; height: 4px;
+  background: var(--o);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.service-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 2rem;
+}
+
+.engagements {
+  padding: 100px 56px;
+  border-top: 1px solid var(--line);
+  background: var(--dark);
+}
+.engagements .eyebrow { color: rgba(255,255,255,.35); }
+.engagements h2 { color: #fff; margin: .8rem 0 4rem; }
+.eng-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,.07);
+}
+.eng-card { background: var(--dark); padding: 32px 28px; }
+.eng-icon {
+  font-size: 28px;
+  margin-bottom: 1.2rem;
+  display: block;
+}
+.eng-card h3 { color: #fff; font-size: 15px; font-weight: 500; margin-bottom: .6rem; }
+.eng-card p { font-size: 13px; color: rgba(255,255,255,.45); line-height: 1.65; }
+
+.cta-band {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 48px 56px;
+  border-top: 1px solid var(--line);
+}
+.cta-band h2 { font-size: clamp(1.4rem, 2.5vw, 2rem); }
+.cta-band h2 span { color: var(--o); font-style: italic; }
+
+@media (max-width: 900px) {
+  .page-header { grid-template-columns: 1fr; padding: 60px 20px; gap: 1.5rem; }
+  .services-block { grid-template-columns: 1fr; }
+  .service-detail { padding: 48px 20px; border-right: none; }
+  .engagements { padding: 60px 20px; }
+  .eng-grid { grid-template-columns: 1fr 1fr; }
+  .cta-band { flex-direction: column; gap: 24px; text-align: center; padding: 40px 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo"><span class="logo-dot"></span>PCI Travaux</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="realisations.html">Réalisations</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="tel:0621384191" class="nav-tel">06 21 38 41 91</a>
+</nav>
+
+<div class="page-header">
+  <div>
+    <div class="eyebrow">Ce que nous faisons</div>
+    <h1>Nos <i>services</i></h1>
+  </div>
+  <p class="lead">Des travaux soignés, réalisés par des professionnels qualifiés et assurés. Chaque chantier est unique, chaque client mérite une attention particulière.</p>
+</div>
+
+<div class="services-block">
+
+  <div class="service-detail">
+    <div class="service-num">01</div>
+    <img class="service-img" src="https://images.unsplash.com/photo-1617806118233-18e1de247200?w=700&q=80&fit=crop" alt="Peinture intérieure">
+    <h2>Peinture intérieure</h2>
+    <p>Refonte complète ou rafraîchissement de vos pièces. Préparation des surfaces, enduit, peinture — nous appliquons des produits durables pour un rendu professionnel.</p>
+    <ul>
+      <li>Préparation et ponçage des surfaces</li>
+      <li>Application d'enduit et primaire</li>
+      <li>Peinture multicouche</li>
+      <li>Traitement des fissures et moisissures</li>
+    </ul>
+  </div>
+
+  <div class="service-detail">
+    <div class="service-num">02</div>
+    <img class="service-img" src="https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?w=700&q=80&fit=crop" alt="Ravalement de façade">
+    <h2>Ravalement de façade</h2>
+    <p>Nettoyage, enduit et peinture façade — nous redonnons à votre maison son éclat d'origine tout en la protégeant durablement des intempéries.</p>
+    <ul>
+      <li>Nettoyage haute pression</li>
+      <li>Traitement hydrofuge et anti-mousse</li>
+      <li>Enduit de façade</li>
+      <li>Peinture extérieure longue durée</li>
+    </ul>
+  </div>
+
+  <div class="service-detail">
+    <div class="service-num">03</div>
+    <img class="service-img" src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=700&q=80&fit=crop" alt="Aménagement extérieur">
+    <h2>Aménagement extérieur</h2>
+    <p>Terrasses, allées, clôtures, dallage — nous créons et rénovons vos espaces extérieurs pour les rendre à la fois fonctionnels et esthétiques.</p>
+    <ul>
+      <li>Création et rénovation de terrasses</li>
+      <li>Pose de dallage et pavés</li>
+      <li>Allées et chemins</li>
+      <li>Clôtures et bordures</li>
+    </ul>
+  </div>
+
+  <div class="service-detail">
+    <div class="service-num">04</div>
+    <img class="service-img" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80&fit=crop" alt="Maçonnerie">
+    <h2>Petite maçonnerie</h2>
+    <p>Réparations, cloisons, seuils, murets — des interventions précises et bien finies pour toutes vos petites maçonneries, intérieures comme extérieures.</p>
+    <ul>
+      <li>Réparation de fissures</li>
+      <li>Pose de cloisons</li>
+      <li>Murets et seuils</li>
+      <li>Jointoiement et ragréage</li>
+    </ul>
+  </div>
+
+  <div class="service-detail">
+    <div class="service-num">05</div>
+    <img class="service-img" src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=700&q=80&fit=crop" alt="Électricité">
+    <h2>Électricité générale</h2>
+    <p>Mise aux normes, installation de prises, interrupteurs et tableaux électriques. Des interventions conformes aux réglementations en vigueur.</p>
+    <ul>
+      <li>Mise aux normes NF C 15-100</li>
+      <li>Pose de prises et interrupteurs</li>
+      <li>Tableau électrique</li>
+      <li>Éclairage intérieur et extérieur</li>
+    </ul>
+  </div>
+
+  <div class="service-detail">
+    <div class="service-num">06</div>
+    <img class="service-img" src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=700&q=80&fit=crop" alt="Câblage informatique">
+    <h2>Câblage informatique</h2>
+    <p>Tirage de câble réseau, brassage et organisation de vos installations informatiques. Pour les professionnels comme les particuliers.</p>
+    <ul>
+      <li>Tirage de câbles RJ45</li>
+      <li>Brassage et étiquetage</li>
+      <li>Baie de brassage</li>
+      <li>Test et certification réseau</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- ENGAGEMENTS -->
+<section class="engagements">
+  <div class="eyebrow">Nos engagements</div>
+  <h2>Pourquoi choisir PCI Travaux</h2>
+  <div class="eng-grid">
+    <div class="eng-card">
+      <span class="eng-icon">✓</span>
+      <h3>Devis gratuit</h3>
+      <p>Chaque devis est établi gratuitement, sans engagement, avec un chiffrage détaillé et transparent.</p>
+    </div>
+    <div class="eng-card">
+      <span class="eng-icon">◷</span>
+      <h3>Délais tenus</h3>
+      <p>Nous respectons les plannings fixés ensemble. Votre temps est précieux, nous le savons.</p>
+    </div>
+    <div class="eng-card">
+      <span class="eng-icon">◈</span>
+      <h3>Finitions soignées</h3>
+      <p>Chaque détail compte. Nos chantiers sont propres, nos finitions sont irréprochables.</p>
+    </div>
+    <div class="eng-card">
+      <span class="eng-icon">☂</span>
+      <h3>Assuré & garantie</h3>
+      <p>Nos travaux sont couverts par notre assurance décennale pour votre tranquillité d'esprit.</p>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2>Un projet ? Parlons-en <span>sans engagement.</span></h2>
+  <a href="contact.html" class="btn btn-dark">Demander un devis gratuit</a>
+</div>
+
+<footer>
+  <span>© 2025 PCI Travaux — Dreux (28100)</span>
+  <span>Peinture · Façade · Extérieur · Maçonnerie · Électricité</span>
+  <a href="tel:0621384191">06 21 38 41 91</a>
+</footer>
+
+</body>
+</html>

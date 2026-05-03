@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — PCI Travaux Dreux</title>
+<link rel="stylesheet" href="style.css">
+<style>
+
+.page-header {
+  padding: 100px 56px 80px;
+  border-bottom: 1px solid var(--line);
+}
+.page-header .eyebrow { margin-bottom: .8rem; }
+.page-header h1 { max-width: 560px; }
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--line);
+  min-height: 70vh;
+}
+
+/* FORMULAIRE */
+.contact-form-col {
+  padding: 72px 56px;
+  border-right: 1px solid var(--line);
+}
+.contact-form-col h2 { font-size: clamp(1.4rem, 2vw, 1.9rem); margin: .6rem 0 2.5rem; }
+.f-row { margin-bottom: 2rem; }
+.f-row label {
+  display: block;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--mid); margin-bottom: .6rem;
+}
+.f-row input,
+.f-row textarea,
+.f-row select {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  padding: 10px 0;
+  font-size: 15px;
+  font-family: 'Inter', sans-serif;
+  color: var(--dark);
+  outline: none;
+  font-weight: 300;
+  transition: border-color .2s;
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+.f-row input:focus,
+.f-row textarea:focus,
+.f-row select:focus { border-color: var(--o); }
+.f-row textarea { height: 100px; resize: none; }
+.f-row-double { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.f-submit {
+  background: var(--dark);
+  color: #fff;
+  border: none;
+  padding: 15px 36px;
+  font-size: 13px; font-weight: 500;
+  letter-spacing: .04em;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: background .2s;
+  margin-top: .5rem;
+}
+.f-submit:hover { background: var(--o); }
+
+/* INFOS */
+.contact-info-col { padding: 72px 56px; }
+.contact-info-col h2 { font-size: clamp(1.4rem, 2vw, 1.9rem); margin: .6rem 0 2.5rem; }
+
+.info-block { margin-bottom: 2.5rem; }
+.info-block .label {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--o); margin-bottom: .5rem;
+}
+.info-block strong {
+  display: block;
+  font-size: 16px; font-weight: 500;
+  color: var(--dark); margin-bottom: .2rem;
+}
+.info-block span { font-size: 14px; color: var(--mid); }
+.info-block a { color: var(--dark); text-decoration: none; font-weight: 500; }
+.info-block a:hover { color: var(--o); }
+
+.map-placeholder {
+  margin-top: 2.5rem;
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: #ede9e3;
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+.map-placeholder iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* BANDE RÉASSURANCE */
+.reassurance {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--line);
+}
+.re-item {
+  padding: 40px 32px;
+  border-right: 1px solid var(--line);
+}
+.re-item:last-child { border-right: none; }
+.re-num {
+  font-family: 'Fraunces', serif;
+  font-size: 2.4rem; font-weight: 600;
+  color: var(--o); line-height: 1;
+  margin-bottom: .4rem;
+}
+.re-item h3 { font-size: 14px; font-weight: 500; margin-bottom: .3rem; }
+.re-item p { font-size: 13px; color: var(--mid); line-height: 1.6; }
+
+@media (max-width: 900px) {
+  .page-header { padding: 60px 20px; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .contact-form-col { padding: 48px 20px; border-right: none; border-bottom: 1px solid var(--line); }
+  .contact-info-col { padding: 48px 20px; }
+  .f-row-double { grid-template-columns: 1fr; gap: 0; }
+  .reassurance { grid-template-columns: 1fr 1fr; }
+  .re-item { padding: 28px 20px; }
+  .re-item:nth-child(2n) { border-right: none; }
+  .re-item:nth-child(1),
+  .re-item:nth-child(2) { border-bottom: 1px solid var(--line); }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo"><span class="logo-dot"></span>PCI Travaux</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="realisations.html">Réalisations</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <a href="tel:0621384191" class="nav-tel">06 21 38 41 91</a>
+</nav>
+
+<div class="page-header">
+  <div class="eyebrow">Parlons de votre projet</div>
+  <h1>Contactez-<i>nous</i></h1>
+</div>
+
+<!-- BANDE RÉASSURANCE -->
+<div class="reassurance">
+  <div class="re-item">
+    <div class="re-num">48h</div>
+    <h3>Délai de réponse</h3>
+    <p>Nous vous rappelons sous 48h ouvrées.</p>
+  </div>
+  <div class="re-item">
+    <div class="re-num">0€</div>
+    <h3>Devis gratuit</h3>
+    <p>Sans engagement, détaillé et transparent.</p>
+  </div>
+  <div class="re-item">
+    <div class="re-num">28 - 78 - 27</div>
+    <h3>Département couvert</h3>
+    <p>Dreux et tout l'Eure-et-Loir.</p>
+  </div>
+  <div class="re-item">
+    <div class="re-num">10+</div>
+    <h3>Ans d'expérience</h3>
+    <p>Artisans qualifiés et assurés.</p>
+  </div>
+</div>
+
+<div class="contact-grid">
+
+  <!-- FORMULAIRE -->
+  <div class="contact-form-col">
+    <div class="eyebrow">Formulaire</div>
+    <h2>Votre demande de devis</h2>
+    <form>
+      <div class="f-row-double">
+        <div class="f-row">
+          <label>Prénom</label>
+          <input type="text" placeholder="Jean">
+        </div>
+        <div class="f-row">
+          <label>Nom</label>
+          <input type="text" placeholder="Dupont">
+        </div>
+      </div>
+      <div class="f-row">
+        <label>Téléphone</label>
+        <input type="tel" placeholder="06 XX XX XX XX">
+      </div>
+      <div class="f-row">
+        <label>Email</label>
+        <input type="email" placeholder="jean@exemple.fr">
+      </div>
+      <div class="f-row">
+        <label>Type de travaux</label>
+        <select>
+          <option value="">— Choisissez —</option>
+          <option>Peinture intérieure</option>
+          <option>Peinture extérieure</option>
+          <option>Ravalement de façade</option>
+          <option>Aménagement extérieur</option>
+          <option>Petite maçonnerie</option>
+          <option>Électricité générale</option>
+          <option>Câblage informatique</option>
+          <option>Autre</option>
+        </select>
+      </div>
+      <div class="f-row">
+        <label>Description du projet</label>
+        <textarea placeholder="Décrivez votre chantier, la superficie approximative, vos contraintes particulières..."></textarea>
+      </div>
+      <button type="submit" class="f-submit">Envoyer ma demande →</button>
+    </form>
+  </div>
+
+  <!-- INFOS CONTACT -->
+  <div class="contact-info-col">
+    <div class="eyebrow">Coordonnées</div>
+    <h2>On se parle ?</h2>
+
+    <div class="info-block">
+      <div class="label">Téléphone</div>
+      <strong><a href="tel:0621384191">06 21 38 41 91</a></strong>
+      <span>Lundi – Samedi, 8h – 19h</span>
+    </div>
+
+    <div class="info-block">
+      <div class="label">Adresse</div>
+      <strong>18 rue Léopold Sédar Senghor</strong>
+      <span>28100 Dreux</span>
+    </div>
+
+    <div class="info-block">
+      <div class="label">Zone d'intervention</div>
+      <strong>Dreux et Eure-et-Loir (28)</strong>
+      <span>Nous nous déplaçons sur tout le département</span>
+    </div>
+
+    <div class="map-placeholder">
+      <iframe
+        src="https://maps.google.com/maps?q=18+rue+Léopold+Sédar+Senghor,+28100+Dreux&output=embed&z=15"
+        allowfullscreen=""
+        loading="lazy"
+        title="Localisation PCI Travaux"
+      ></iframe>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <span>© 2025 PCI Travaux — Dreux (28100)</span>
+  <span>Peinture · Façade · Extérieur · Maçonnerie · Électricité</span>
+  <a href="tel:0621384191">06 21 38 41 91</a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Réalisations — PCI Travaux Dreux</title>
+<link rel="stylesheet" href="style.css">
+<style>
+
+.page-header {
+  padding: 100px 56px 80px;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: end;
+}
+.page-header h1 { margin: .8rem 0; }
+
+/* AVANT/APRÈS */
+.ba-section { padding: 100px 56px; border-bottom: 1px solid var(--line); }
+.ba-section h2 { margin: .8rem 0 .8rem; }
+.ba-section .lead { margin-bottom: 4rem; }
+.ba-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.ba-block { background: var(--bg); }
+.ba-wrap {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  cursor: col-resize;
+  user-select: none;
+}
+.ba-before, .ba-after { position: absolute; inset: 0; }
+.ba-after { clip-path: inset(0 50% 0 0); }
+.ba-before img, .ba-after img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+.ba-handle {
+  position: absolute; top: 0; bottom: 0;
+  width: 2px; background: #fff;
+  left: 50%; transform: translateX(-50%); z-index: 4;
+}
+.ba-handle::after {
+  content: '';
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--o); border: 2px solid #fff;
+}
+.ba-lbl {
+  position: absolute; bottom: 12px;
+  font-size: 10px; font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 4px 10px; color: #fff; z-index: 5;
+}
+.ba-lbl.b { left: 12px; background: rgba(0,0,0,.45); }
+.ba-lbl.a { right: 12px; background: var(--o); }
+.ba-title { padding: 16px 20px; font-size: 13px; color: var(--mid); }
+
+/* GALERIE PAR CATÉGORIE */
+.cat-section { padding: 80px 56px; border-bottom: 1px solid var(--line); }
+.cat-section:last-of-type { border-bottom: none; }
+.cat-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 2.5rem; }
+.cat-header h2 { font-size: clamp(1.5rem, 2.5vw, 2.1rem); }
+.cat-count { font-size: 12px; color: var(--mid); letter-spacing: .06em; }
+
+/* GRILLE FACADE : 1 grande + 3 petites */
+.grid-facade {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 300px 300px;
+  gap: 6px;
+}
+.grid-facade .g-main { grid-column: span 2; grid-row: span 2; }
+.grid-facade img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+.grid-facade .g-item { overflow: hidden; }
+.grid-facade .g-item:hover img { transform: scale(1.04); }
+
+/* GRILLE PEINTURE : 4 en ligne */
+.grid-paint {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 260px;
+  gap: 6px;
+}
+.grid-paint .g-item { overflow: hidden; }
+.grid-paint img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+.grid-paint .g-item:hover img { transform: scale(1.04); }
+
+/* GRILLE EXTERIEUR : 2 grandes */
+.grid-ext {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 380px;
+  gap: 6px;
+}
+.grid-ext .g-item { overflow: hidden; }
+.grid-ext img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+.grid-ext .g-item:hover img { transform: scale(1.04); }
+
+/* GRILLE MAÇONNERIE : 3 égales */
+.grid-macon {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 280px;
+  gap: 6px;
+}
+.grid-macon .g-item { overflow: hidden; }
+.grid-macon img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+.grid-macon .g-item:hover img { transform: scale(1.04); }
+
+.photo-note {
+  margin-top: 1rem;
+  font-size: 12px;
+  color: var(--mid);
+  font-style: italic;
+}
+
+@media (max-width: 900px) {
+  .page-header { grid-template-columns: 1fr; padding: 60px 20px; gap: 1.5rem; }
+  .ba-section, .cat-section { padding: 56px 20px; }
+  .ba-grid { grid-template-columns: 1fr; }
+  .grid-facade { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .grid-facade .g-main { grid-column: span 2; grid-row: span 1; height: 220px; }
+  .grid-facade .g-item { height: 160px; }
+  .grid-paint { grid-template-columns: 1fr 1fr; grid-template-rows: 180px 180px; }
+  .grid-ext { grid-template-rows: 220px; }
+  .grid-macon { grid-template-columns: 1fr 1fr; grid-template-rows: 180px; }
+  .cat-header { flex-direction: column; gap: .4rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo"><span class="logo-dot"></span>PCI Travaux</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="realisations.html" class="active">Réalisations</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="tel:0621384191" class="nav-tel">06 21 38 41 91</a>
+</nav>
+
+<div class="page-header">
+  <div>
+    <div class="eyebrow">Nos chantiers</div>
+    <h1>Nos <i>réalisations</i></h1>
+  </div>
+  <p class="lead">Chaque projet est unique. Voici une sélection de nos travaux — remplacez ces photos par vos propres chantiers pour personnaliser le site.</p>
+</div>
+
+<!-- AVANT/APRÈS -->
+<section class="ba-section">
+  <div class="eyebrow">Avant / après</div>
+  <h2>Glissez pour voir la transformation</h2>
+  <p class="lead">Faites glisser le curseur sur chaque photo pour comparer avant et après notre intervention.</p>
+  <div class="ba-grid">
+
+    <div class="ba-block">
+      <div class="ba-wrap" id="s1">
+        <div class="ba-before"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&fit=crop" alt="avant"></div>
+        <div class="ba-after" id="a1"><img src="https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?w=800&q=80&fit=crop" alt="après"></div>
+        <span class="ba-lbl b">Avant</span><span class="ba-lbl a">Après</span>
+        <div class="ba-handle" id="h1"></div>
+      </div>
+      <div class="ba-title">Façade — rénovation complète</div>
+    </div>
+
+    <div class="ba-block">
+      <div class="ba-wrap" id="s2">
+        <div class="ba-before"><img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&q=80&fit=crop" alt="avant"></div>
+        <div class="ba-after" id="a2"><img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80&fit=crop" alt="après"></div>
+        <span class="ba-lbl b">Avant</span><span class="ba-lbl a">Après</span>
+        <div class="ba-handle" id="h2"></div>
+      </div>
+      <div class="ba-title">Peinture intérieure — salon</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GALERIE — FAÇADE -->
+<section class="cat-section">
+  <div class="cat-header">
+    <div>
+      <div class="eyebrow">Catégorie</div>
+      <h2>Ravalement de façade</h2>
+    </div>
+    <span class="cat-count">4 réalisations</span>
+  </div>
+  <div class="grid-facade">
+    <div class="g-item g-main">
+      <img src="https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?w=1000&q=85&fit=crop" alt="façade principale">
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80&fit=crop" alt="façade 2">
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500&q=80&fit=crop" alt="façade 3">
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=500&q=80&fit=crop" alt="façade 4">
+    </div>
+  </div>
+  <p class="photo-note">Remplacez ces images par vos propres photos de chantiers.</p>
+</section>
+
+<!-- GALERIE — PEINTURE -->
+<section class="cat-section">
+  <div class="cat-header">
+    <div>
+      <div class="eyebrow">Catégorie</div>
+      <h2>Peinture intérieure</h2>
+    </div>
+    <span class="cat-count">4 réalisations</span>
+  </div>
+  <div class="grid-paint">
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500&q=80&fit=crop" alt="peinture 1">
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?w=500&q=80&fit=crop" alt="peinture 2">
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?w=500&q=80&fit=crop" alt="peinture 3">
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1615874694520-474822394e73?w=500&q=80&fit=crop" alt="peinture 4">
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE — EXTÉRIEUR -->
+<section class="cat-section">
+  <div class="cat-header">
+    <div>
+      <div class="eyebrow">Catégorie</div>
+      <h2>Aménagement extérieur</h2>
+    </div>
+    <span class="cat-count">2 réalisations</span>
+  </div>
+  <div class="grid-ext">
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=900&q=85&fit=crop" alt="terrasse 1">
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?w=900&q=85&fit=crop" alt="terrasse 2">
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE — MAÇONNERIE -->
+<section class="cat-section">
+  <div class="cat-header">
+    <div>
+      <div class="eyebrow">Catégorie</div>
+      <h2>Maçonnerie & électricité</h2>
+    </div>
+    <span class="cat-count">3 réalisations</span>
+  </div>
+  <div class="grid-macon">
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80&fit=crop" alt="maçonnerie 1">
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80&fit=crop" alt="électricité">
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80&fit=crop" alt="câblage">
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 PCI Travaux — Dreux (28100)</span>
+  <span>Peinture · Façade · Extérieur · Maçonnerie · Électricité</span>
+  <a href="tel:0621384191">06 21 38 41 91</a>
+</footer>
+
+<script>
+function initSlider(wrapId, afterId, handleId) {
+  const wrap = document.getElementById(wrapId);
+  const after = document.getElementById(afterId);
+  const handle = document.getElementById(handleId);
+  if (!wrap || !after || !handle) return;
+  let dragging = false;
+  function set(x) {
+    const r = wrap.getBoundingClientRect();
+    let p = Math.max(2, Math.min(98, (x - r.left) / r.width * 100));
+    after.style.clipPath = 'inset(0 ' + (100 - p) + '% 0 0)';
+    handle.style.left = p + '%';
+  }
+  wrap.addEventListener('mousedown', e => { dragging = true; set(e.clientX); });
+  wrap.addEventListener('touchstart', e => { dragging = true; set(e.touches[0].clientX); }, { passive: true });
+  document.addEventListener('mousemove', e => { if (dragging) set(e.clientX); });
+  document.addEventListener('touchmove', e => { if (dragging) set(e.touches[0].clientX); }, { passive: true });
+  document.addEventListener('mouseup', () => dragging = false);
+  document.addEventListener('touchend', () => dragging = false);
+}
+initSlider('s1', 'a1', 'h1');
+initSlider('s2', 'a2', 'h2');
+</script>
+</body>
+</html>

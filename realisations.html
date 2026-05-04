@@ -7,8 +7,23 @@
 <link rel="stylesheet" href="style.css">
 <style>
 
+/* ── NAV LOGO ── */
+nav .logo {
+  height: var(--nav-h);
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+}
+nav .logo img {
+  height: 100%;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* ── PAGE HEADER ── */
 .page-header {
-  padding: 100px 56px 80px;
+  padding: 80px 56px 72px;
   border-bottom: 1px solid var(--line);
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -17,21 +32,23 @@
 }
 .page-header h1 { margin: .8rem 0; }
 
-/* AVANT/APRÈS */
-.ba-section { padding: 100px 56px; border-bottom: 1px solid var(--line); }
-.ba-section h2 { margin: .8rem 0 .8rem; }
-.ba-section .lead { margin-bottom: 4rem; }
-.ba-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-  background: var(--line);
-  border: 1px solid var(--line);
+/* ── AVANT/APRÈS centré ── */
+.ba-section {
+  padding: 80px 56px;
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
-.ba-block { background: var(--bg); }
+.ba-section h2 { margin: .8rem 0 .6rem; }
+.ba-section .lead { margin-bottom: 3rem; max-width: 480px; text-align: center; }
+
+.ba-single { width: 100%; max-width: 680px; text-align: left; }
 .ba-wrap {
   position: relative;
-  aspect-ratio: 4/3;
+  aspect-ratio: 16/10;
   overflow: hidden;
   cursor: col-resize;
   user-select: none;
@@ -40,9 +57,7 @@
 .ba-after { clip-path: inset(0 50% 0 0); }
 .ba-before img, .ba-after img {
   width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
-  pointer-events: none;
+  object-fit: cover; display: block; pointer-events: none;
 }
 .ba-handle {
   position: absolute; top: 0; bottom: 0;
@@ -53,97 +68,155 @@
   content: '';
   position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: 32px; height: 32px;
-  border-radius: 50%;
+  width: 30px; height: 30px; border-radius: 50%;
   background: var(--o); border: 2px solid #fff;
 }
 .ba-lbl {
-  position: absolute; bottom: 12px;
+  position: absolute; bottom: 10px;
   font-size: 10px; font-weight: 500;
   letter-spacing: .08em; text-transform: uppercase;
-  padding: 4px 10px; color: #fff; z-index: 5;
+  padding: 3px 9px; color: #fff; z-index: 5;
 }
-.ba-lbl.b { left: 12px; background: rgba(0,0,0,.45); }
-.ba-lbl.a { right: 12px; background: var(--o); }
-.ba-title { padding: 16px 20px; font-size: 13px; color: var(--mid); }
+.ba-lbl.b { left: 10px; background: rgba(0,0,0,.45); }
+.ba-lbl.a { right: 10px; background: var(--o); }
+.ba-title { margin-top: 12px; font-size: 13px; color: var(--mid); }
 
-/* GALERIE PAR CATÉGORIE */
-.cat-section { padding: 80px 56px; border-bottom: 1px solid var(--line); }
+/* ── GALERIES ── */
+.cat-section {
+  padding: 80px 56px;
+  border-bottom: 1px solid var(--line);
+}
 .cat-section:last-of-type { border-bottom: none; }
-.cat-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 2.5rem; }
-.cat-header h2 { font-size: clamp(1.5rem, 2.5vw, 2.1rem); }
+
+.cat-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+}
+.cat-header h2 { font-size: clamp(1.4rem, 2.5vw, 2rem); }
 .cat-count { font-size: 12px; color: var(--mid); letter-spacing: .06em; }
 
-/* GRILLE FACADE : 1 grande + 3 petites */
-.grid-facade {
+.g-item { overflow: hidden; cursor: zoom-in; }
+.g-item img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform .4s ease;
+}
+.g-item:hover img { transform: scale(1.04); }
+
+/* ── AMÉNAGEMENT EXTÉRIEUR — grille unifiée 7 photos ── */
+/*
+  Colonne gauche : grande photo (lignes 1-2)
+  Colonne milieu + droite : 4 petites (2×2)
+  Rangée 3 : 2 photos sur toute la largeur (1 + 2 colonnes)
+*/
+.grid-ext {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 300px 300px;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 220px 220px 220px;
   gap: 6px;
 }
-.grid-facade .g-main { grid-column: span 2; grid-row: span 2; }
-.grid-facade img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
-.grid-facade .g-item { overflow: hidden; }
-.grid-facade .g-item:hover img { transform: scale(1.04); }
+.ext-main { grid-column: 1;     grid-row: 1 / 3; }
+.ext-tr1  { grid-column: 2;     grid-row: 1; }
+.ext-tr2  { grid-column: 3;     grid-row: 1; }
+.ext-br1  { grid-column: 2;     grid-row: 2; }
+.ext-br2  { grid-column: 3;     grid-row: 2; }
+.ext-b1   { grid-column: 1;     grid-row: 3; }
+.ext-b2   { grid-column: 2 / 4; grid-row: 3; }
 
-/* GRILLE PEINTURE : 4 en ligne */
-.grid-paint {
+/* ── Grille 2 colonnes ── */
+.grid-2 {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 320px;
+  gap: 6px;
+}
+
+/* ── Grille 3 colonnes ── */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 260px;
   gap: 6px;
 }
-.grid-paint .g-item { overflow: hidden; }
-.grid-paint img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
-.grid-paint .g-item:hover img { transform: scale(1.04); }
 
-/* GRILLE EXTERIEUR : 2 grandes */
-.grid-ext {
+/* ── Grille 4 colonnes ── */
+.grid-4 {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 380px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 220px;
   gap: 6px;
 }
-.grid-ext .g-item { overflow: hidden; }
-.grid-ext img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
-.grid-ext .g-item:hover img { transform: scale(1.04); }
 
-/* GRILLE MAÇONNERIE : 3 égales */
-.grid-macon {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 280px;
-  gap: 6px;
+/* ── LIGHTBOX ── */
+.lb {
+  display: none;
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(10,8,5,0.93);
+  align-items: center; justify-content: center;
 }
-.grid-macon .g-item { overflow: hidden; }
-.grid-macon img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
-.grid-macon .g-item:hover img { transform: scale(1.04); }
-
-.photo-note {
-  margin-top: 1rem;
-  font-size: 12px;
-  color: var(--mid);
-  font-style: italic;
+.lb.open { display: flex; }
+.lb-img {
+  max-width: 90vw; max-height: 88vh;
+  object-fit: contain; display: block;
+  box-shadow: 0 24px 80px rgba(0,0,0,.5);
+}
+.lb-close {
+  position: fixed; top: 24px; right: 32px;
+  font-size: 28px; color: rgba(255,255,255,.6);
+  cursor: pointer; line-height: 1; transition: color .15s;
+  background: none; border: none;
+  font-family: 'Inter', sans-serif; font-weight: 300;
+}
+.lb-close:hover { color: #fff; }
+.lb-prev, .lb-next {
+  position: fixed; top: 50%; transform: translateY(-50%);
+  font-size: 22px; color: rgba(255,255,255,.5);
+  cursor: pointer; background: none; border: none;
+  padding: 16px; transition: color .15s;
+  font-family: 'Inter', sans-serif;
+}
+.lb-prev { left: 16px; }
+.lb-next { right: 16px; }
+.lb-prev:hover, .lb-next:hover { color: #fff; }
+.lb-counter {
+  position: fixed; bottom: 24px;
+  left: 50%; transform: translateX(-50%);
+  font-size: 12px; color: rgba(255,255,255,.35); letter-spacing: .08em;
 }
 
+/* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .page-header { grid-template-columns: 1fr; padding: 60px 20px; gap: 1.5rem; }
+  .page-header { grid-template-columns: 1fr; padding: 56px 20px; gap: 1.5rem; }
   .ba-section, .cat-section { padding: 56px 20px; }
-  .ba-grid { grid-template-columns: 1fr; }
-  .grid-facade { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-  .grid-facade .g-main { grid-column: span 2; grid-row: span 1; height: 220px; }
-  .grid-facade .g-item { height: 160px; }
-  .grid-paint { grid-template-columns: 1fr 1fr; grid-template-rows: 180px 180px; }
-  .grid-ext { grid-template-rows: 220px; }
-  .grid-macon { grid-template-columns: 1fr 1fr; grid-template-rows: 180px; }
+  .ba-single { max-width: 100%; }
+  .grid-ext {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 180px 180px 180px 180px;
+  }
+  .ext-main { grid-column: 1 / 3; grid-row: 1; }
+  .ext-tr1  { grid-column: 1;     grid-row: 2; }
+  .ext-tr2  { grid-column: 2;     grid-row: 2; }
+  .ext-br1  { grid-column: 1;     grid-row: 3; }
+  .ext-br2  { grid-column: 2;     grid-row: 3; }
+  .ext-b1   { grid-column: 1;     grid-row: 4; }
+  .ext-b2   { grid-column: 2;     grid-row: 4; }
+  .grid-2 { grid-template-rows: 200px; }
+  .grid-3 { grid-template-columns: 1fr 1fr; grid-template-rows: 180px; }
+  .grid-4 { grid-template-columns: 1fr 1fr; grid-template-rows: 160px 160px; }
   .cat-header { flex-direction: column; gap: .4rem; }
+  .lb-prev { left: 4px; }
+  .lb-next { right: 4px; }
 }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="logo"><span class="logo-dot"></span>PCI Travaux</a>
+  <a href="index.html" class="logo">
+    <img src="logo pci.webp" alt="PCI Travaux">
+  </a>
   <ul class="nav-links">
     <li><a href="index.html">Accueil</a></li>
     <li><a href="services.html">Services</a></li>
@@ -153,135 +226,113 @@
   <a href="tel:0621384191" class="nav-tel">06 21 38 41 91</a>
 </nav>
 
+<!-- EN-TÊTE -->
 <div class="page-header">
   <div>
     <div class="eyebrow">Nos chantiers</div>
     <h1>Nos <i>réalisations</i></h1>
   </div>
-  <p class="lead">Chaque projet est unique. Voici une sélection de nos travaux — remplacez ces photos par vos propres chantiers pour personnaliser le site.</p>
+  <p class="lead">Chaque projet est unique. Voici une sélection de nos travaux réalisés dans le secteur de Dreux et alentours.</p>
 </div>
 
 <!-- AVANT/APRÈS -->
 <section class="ba-section">
   <div class="eyebrow">Avant / après</div>
   <h2>Glissez pour voir la transformation</h2>
-  <p class="lead">Faites glisser le curseur sur chaque photo pour comparer avant et après notre intervention.</p>
-  <div class="ba-grid">
-
-    <div class="ba-block">
-      <div class="ba-wrap" id="s1">
-        <div class="ba-before"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&fit=crop" alt="avant"></div>
-        <div class="ba-after" id="a1"><img src="https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?w=800&q=80&fit=crop" alt="après"></div>
-        <span class="ba-lbl b">Avant</span><span class="ba-lbl a">Après</span>
-        <div class="ba-handle" id="h1"></div>
-      </div>
-      <div class="ba-title">Façade — rénovation complète</div>
+  <p class="lead">Faites glisser le curseur pour comparer avant et après notre intervention.</p>
+  <div class="ba-single">
+    <div class="ba-wrap" id="s1">
+      <div class="ba-before"><img src="img/img_6.JPG" alt="avant"></div>
+      <div class="ba-after" id="a1"><img src="img/img_3.JPG" alt="après"></div>
+      <span class="ba-lbl b">Avant</span>
+      <span class="ba-lbl a">Après</span>
+      <div class="ba-handle" id="h1"></div>
     </div>
-
-    <div class="ba-block">
-      <div class="ba-wrap" id="s2">
-        <div class="ba-before"><img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&q=80&fit=crop" alt="avant"></div>
-        <div class="ba-after" id="a2"><img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80&fit=crop" alt="après"></div>
-        <span class="ba-lbl b">Avant</span><span class="ba-lbl a">Après</span>
-        <div class="ba-handle" id="h2"></div>
-      </div>
-      <div class="ba-title">Peinture intérieure — salon</div>
-    </div>
-
+    <div class="ba-title">Façade — rénovation complète</div>
   </div>
 </section>
 
-<!-- GALERIE — FAÇADE -->
-<section class="cat-section">
-  <div class="cat-header">
-    <div>
-      <div class="eyebrow">Catégorie</div>
-      <h2>Ravalement de façade</h2>
-    </div>
-    <span class="cat-count">4 réalisations</span>
-  </div>
-  <div class="grid-facade">
-    <div class="g-item g-main">
-      <img src="https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?w=1000&q=85&fit=crop" alt="façade principale">
-    </div>
-    <div class="g-item">
-      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80&fit=crop" alt="façade 2">
-    </div>
-    <div class="g-item">
-      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500&q=80&fit=crop" alt="façade 3">
-    </div>
-    <div class="g-item">
-      <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=500&q=80&fit=crop" alt="façade 4">
-    </div>
-  </div>
-  <p class="photo-note">Remplacez ces images par vos propres photos de chantiers.</p>
-</section>
-
-<!-- GALERIE — PEINTURE -->
-<section class="cat-section">
-  <div class="cat-header">
-    <div>
-      <div class="eyebrow">Catégorie</div>
-      <h2>Peinture intérieure</h2>
-    </div>
-    <span class="cat-count">4 réalisations</span>
-  </div>
-  <div class="grid-paint">
-    <div class="g-item">
-      <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500&q=80&fit=crop" alt="peinture 1">
-    </div>
-    <div class="g-item">
-      <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?w=500&q=80&fit=crop" alt="peinture 2">
-    </div>
-    <div class="g-item">
-      <img src="https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?w=500&q=80&fit=crop" alt="peinture 3">
-    </div>
-    <div class="g-item">
-      <img src="https://images.unsplash.com/photo-1615874694520-474822394e73?w=500&q=80&fit=crop" alt="peinture 4">
-    </div>
-  </div>
-</section>
-
-<!-- GALERIE — EXTÉRIEUR -->
+<!-- AMÉNAGEMENT EXTÉRIEUR -->
 <section class="cat-section">
   <div class="cat-header">
     <div>
       <div class="eyebrow">Catégorie</div>
       <h2>Aménagement extérieur</h2>
     </div>
-    <span class="cat-count">2 réalisations</span>
+    <span class="cat-count">7 réalisations</span>
   </div>
   <div class="grid-ext">
-    <div class="g-item">
-      <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=900&q=85&fit=crop" alt="terrasse 1">
-    </div>
-    <div class="g-item">
-      <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?w=900&q=85&fit=crop" alt="terrasse 2">
-    </div>
+    <div class="g-item ext-main"><img src="img/img_9.jpeg"          alt="aménagement extérieur"></div>
+    <div class="g-item ext-tr1"> <img src="img/img_10.jpeg"         alt="aménagement extérieur"></div>
+    <div class="g-item ext-tr2"> <img src="img/img_11.JPG"          alt="aménagement extérieur"></div>
+    <div class="g-item ext-br1"> <img src="img/img_12.jpeg"         alt="aménagement extérieur"></div>
+    <div class="g-item ext-br2"> <img src="img/img_13.jpeg"         alt="aménagement extérieur"></div>
+    <div class="g-item ext-b1">  <img src="img/img_14.jpeg"         alt="aménagement extérieur"></div>
+    <div class="g-item ext-b2">  <img src="img/2025-10-08 (3).jpg"  alt="aménagement extérieur"></div>
   </div>
 </section>
 
-<!-- GALERIE — MAÇONNERIE -->
+<!-- TERRASSEMENT -->
 <section class="cat-section">
   <div class="cat-header">
     <div>
       <div class="eyebrow">Catégorie</div>
-      <h2>Maçonnerie & électricité</h2>
+      <h2>Terrassement</h2>
+    </div>
+    <span class="cat-count">2 réalisations</span>
+  </div>
+  <div class="grid-2">
+    <div class="g-item"><img src="img/img_2.JPG"   alt="terrassement"></div>
+    <div class="g-item"><img src="img/img_11.JPG"  alt="terrassement"></div>
+  </div>
+</section>
+
+<!-- PEINTURE -->
+<section class="cat-section">
+  <div class="cat-header">
+    <div>
+      <div class="eyebrow">Catégorie</div>
+      <h2>Peinture</h2>
     </div>
     <span class="cat-count">3 réalisations</span>
   </div>
-  <div class="grid-macon">
-    <div class="g-item">
-      <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80&fit=crop" alt="maçonnerie 1">
-    </div>
-    <div class="g-item">
-      <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80&fit=crop" alt="électricité">
-    </div>
-    <div class="g-item">
-      <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80&fit=crop" alt="câblage">
-    </div>
+  <div class="grid-3">
+    <div class="g-item"><img src="img/img_7.JPG"    alt="peinture"></div>
+    <div class="g-item"><img src="img/img_8.JPG"    alt="peinture"></div>
+    <div class="g-item"><img src="img/img_16.jpeg"  alt="peinture"></div>
   </div>
 </section>
+
+<!-- INTÉRIEUR -->
+<section class="cat-section">
+  <div class="cat-header">
+    <div>
+      <div class="eyebrow">Catégorie</div>
+      <h2>Intérieur</h2>
+    </div>
+    <span class="cat-count">7 réalisations</span>
+  </div>
+  <div class="grid-3">
+    <div class="g-item"><img src="img/img_5.JPG"        alt="intérieur"></div>
+    <div class="g-item"><img src="img/img_6.JPG"        alt="intérieur"></div>
+    <div class="g-item"><img src="img/2025-07-06.jpg"   alt="intérieur"></div>
+  </div>
+  <div class="grid-4" style="margin-top:6px">
+    <div class="g-item"><img src="img/img_1.JPG"        alt="intérieur"></div>
+    <div class="g-item"><img src="img/img_15.JPG"       alt="intérieur"></div>
+    <div class="g-item"><img src="img/2025-07-06.jpg"   alt="intérieur"></div>
+    <div class="g-item"><img src="img/img_18.JPG"       alt="intérieur"></div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb">
+  <button class="lb-close" id="lb-close">✕</button>
+  <button class="lb-prev"  id="lb-prev">&#8592;</button>
+  <img class="lb-img" id="lb-img" src="" alt="">
+  <button class="lb-next"  id="lb-next">&#8594;</button>
+  <div class="lb-counter"  id="lb-counter"></div>
+</div>
 
 <footer>
   <span>© 2025 PCI Travaux — Dreux (28100)</span>
@@ -290,9 +341,10 @@
 </footer>
 
 <script>
+/* ── SLIDER ── */
 function initSlider(wrapId, afterId, handleId) {
-  const wrap = document.getElementById(wrapId);
-  const after = document.getElementById(afterId);
+  const wrap   = document.getElementById(wrapId);
+  const after  = document.getElementById(afterId);
   const handle = document.getElementById(handleId);
   if (!wrap || !after || !handle) return;
   let dragging = false;
@@ -302,15 +354,61 @@ function initSlider(wrapId, afterId, handleId) {
     after.style.clipPath = 'inset(0 ' + (100 - p) + '% 0 0)';
     handle.style.left = p + '%';
   }
-  wrap.addEventListener('mousedown', e => { dragging = true; set(e.clientX); });
+  wrap.addEventListener('mousedown',  e => { dragging = true; set(e.clientX); });
   wrap.addEventListener('touchstart', e => { dragging = true; set(e.touches[0].clientX); }, { passive: true });
-  document.addEventListener('mousemove', e => { if (dragging) set(e.clientX); });
-  document.addEventListener('touchmove', e => { if (dragging) set(e.touches[0].clientX); }, { passive: true });
-  document.addEventListener('mouseup', () => dragging = false);
+  document.addEventListener('mousemove',  e => { if (dragging) set(e.clientX); });
+  document.addEventListener('touchmove',  e => { if (dragging) set(e.touches[0].clientX); }, { passive: true });
+  document.addEventListener('mouseup',  () => dragging = false);
   document.addEventListener('touchend', () => dragging = false);
 }
 initSlider('s1', 'a1', 'h1');
-initSlider('s2', 'a2', 'h2');
+
+/* ── LIGHTBOX ── */
+const lb        = document.getElementById('lb');
+const lbImg     = document.getElementById('lb-img');
+const lbClose   = document.getElementById('lb-close');
+const lbPrev    = document.getElementById('lb-prev');
+const lbNext    = document.getElementById('lb-next');
+const lbCounter = document.getElementById('lb-counter');
+
+const items = Array.from(document.querySelectorAll('.cat-section .g-item img'));
+let current = 0;
+
+function open(i)  {
+  current = i;
+  lbImg.src = items[current].src;
+  lbImg.alt = items[current].alt;
+  lbCounter.textContent = (current + 1) + ' / ' + items.length;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function close()  {
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+  lbImg.src = '';
+}
+function prev()   {
+  current = (current - 1 + items.length) % items.length;
+  lbImg.src = items[current].src;
+  lbCounter.textContent = (current + 1) + ' / ' + items.length;
+}
+function next()   {
+  current = (current + 1) % items.length;
+  lbImg.src = items[current].src;
+  lbCounter.textContent = (current + 1) + ' / ' + items.length;
+}
+
+items.forEach((img, i) => img.parentElement.addEventListener('click', () => open(i)));
+lbClose.addEventListener('click', close);
+lbPrev.addEventListener('click',  prev);
+lbNext.addEventListener('click',  next);
+lb.addEventListener('click', e => { if (e.target === lb) close(); });
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'ArrowLeft')  prev();
+  if (e.key === 'ArrowRight') next();
+  if (e.key === 'Escape')     close();
+});
 </script>
 </body>
 </html>

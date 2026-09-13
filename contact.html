@@ -6,7 +6,12 @@
 <title>Contact — PCI Travaux Dreux</title>
 <link rel="stylesheet" href="style.css">
 <style>
-
+ .logo {
+  height: var(--nav-h);
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+}
 .page-header {
   padding: 100px 56px 80px;
   border-bottom: 1px solid var(--line);
@@ -141,7 +146,9 @@
 <body>
 
 <nav>
-  <a href="index.html" class="logo"><span class="logo-dot"></span>PCI Travaux</a>
+  <a href="index.html" class="logo">
+    <img src="/img/logo pci.png" alt="PCI Travaux">
+  </a>
   <ul class="nav-links">
     <li><a href="index.html">Accueil</a></li>
     <li><a href="services.html">Services</a></li>
@@ -171,7 +178,7 @@
   <div class="re-item">
     <div class="re-num">28 - 78 - 27</div>
     <h3>Département couvert</h3>
-    <p>Dreux et tout l'Eure-et-Loir.</p>
+    <p>Eure et loir et départements limitrophes</p>
   </div>
   <div class="re-item">
     <div class="re-num">10+</div>
@@ -213,7 +220,7 @@
           <option>Peinture extérieure</option>
           <option>Ravalement de façade</option>
           <option>Aménagement extérieur</option>
-          <option>Petite maçonnerie</option>
+          <option>Maçonnerie</option>
           <option>Électricité générale</option>
           <option>Câblage informatique</option>
           <option>Autre</option>
@@ -238,32 +245,20 @@
       <span>Lundi – Samedi, 8h – 19h</span>
     </div>
 
-    <div class="info-block">
-      <div class="label">Adresse</div>
-      <strong>18 rue Léopold Sédar Senghor</strong>
-      <span>28100 Dreux</span>
-    </div>
+    
 
     <div class="info-block">
       <div class="label">Zone d'intervention</div>
-      <strong>Dreux et Eure-et-Loir (28)</strong>
-      <span>Nous nous déplaçons sur tout le département</span>
+      <strong>Eure et loir et départements limitrophes</strong>
     </div>
 
-    <div class="map-placeholder">
-      <iframe
-        src="https://maps.google.com/maps?q=18+rue+Léopold+Sédar+Senghor,+28100+Dreux&output=embed&z=15"
-        allowfullscreen=""
-        loading="lazy"
-        title="Localisation PCI Travaux"
-      ></iframe>
-    </div>
+    
   </div>
 
 </div>
 
 <footer>
-  <span>© 2025 PCI Travaux — Dreux (28100)</span>
+  <span>© 2024 PCI Travaux — Dreux (28100)</span>
   <span>Peinture · Façade · Extérieur · Maçonnerie · Électricité</span>
   <a href="tel:0621384191">06 21 38 41 91</a>
 </footer>

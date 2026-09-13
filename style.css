@@ -47,6 +47,12 @@ nav {
   align-items: center;
   gap: 10px;
 }
+/* Ensure logo image fits the nav height and keeps aspect ratio */
+.logo img {
+  max-height: calc(var(--nav-h) - 16px);
+  width: auto;
+  display: block;
+}
 .logo-dot {
   width: 8px; height: 8px;
   background: var(--o);

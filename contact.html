@@ -193,28 +193,28 @@
   <div class="contact-form-col">
     <div class="eyebrow">Formulaire</div>
     <h2>Votre demande de devis</h2>
-    <form>
+    <form id="contact-form">
       <div class="f-row-double">
         <div class="f-row">
           <label>Prénom</label>
-          <input type="text" placeholder="Jean">
+          <input type="text" name="prenom" placeholder="Jean" required>
         </div>
         <div class="f-row">
           <label>Nom</label>
-          <input type="text" placeholder="Dupont">
+          <input type="text" name="nom" placeholder="Dupont" required>
         </div>
       </div>
       <div class="f-row">
         <label>Téléphone</label>
-        <input type="tel" placeholder="06 XX XX XX XX">
+        <input type="tel" name="telephone" placeholder="06 XX XX XX XX">
       </div>
       <div class="f-row">
         <label>Email</label>
-        <input type="email" placeholder="jean@exemple.fr">
+        <input type="email" name="email" placeholder="jean@exemple.fr" required>
       </div>
       <div class="f-row">
         <label>Type de travaux</label>
-        <select>
+        <select name="type_travaux">
           <option value="">— Choisissez —</option>
           <option>Peinture intérieure</option>
           <option>Peinture extérieure</option>
@@ -228,9 +228,11 @@
       </div>
       <div class="f-row">
         <label>Description du projet</label>
-        <textarea placeholder="Décrivez votre chantier, la superficie approximative, vos contraintes particulières..."></textarea>
+        <textarea name="message" placeholder="Décrivez votre chantier, la superficie approximative, vos contraintes particulières..." required></textarea>
       </div>
-      <button type="submit" class="f-submit">Envoyer ma demande →</button>
+      <input type="hidden" name="_subject" value="Nouvelle demande de devis - PCI Travaux">
+      <button type="submit" class="f-submit" id="submit-btn">Envoyer ma demande →</button>
+      <p id="form-status" style="margin-top:1rem; font-size:14px;"></p>
     </form>
   </div>
 
@@ -262,6 +264,42 @@
   <span>Peinture · Façade · Extérieur · Maçonnerie · Électricité</span>
   <a href="tel:0621384191">06 21 38 41 91</a>
 </footer>
+
+<script>
+  document.getElementById('contact-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const btn = document.getElementById('submit-btn');
+    const status = document.getElementById('form-status');
+    const form = e.target;
+
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours...';
+    status.textContent = '';
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/ribmanu784@gmail.com', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      });
+
+      if (response.ok) {
+        status.style.color = 'green';
+        status.textContent = 'Votre demande a bien été envoyée. Nous vous recontactons sous 48h.';
+        form.reset();
+      } else {
+        throw new Error('Erreur serveur');
+      }
+    } catch (err) {
+      status.style.color = 'var(--o)';
+      status.textContent = "Une erreur est survenue. Merci de réessayer ou de nous appeler directement.";
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Envoyer ma demande →';
+    }
+  });
+  </script>
 
 </body>
 </html>

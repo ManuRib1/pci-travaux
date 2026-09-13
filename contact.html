@@ -193,28 +193,28 @@
   <div class="contact-form-col">
     <div class="eyebrow">Formulaire</div>
     <h2>Votre demande de devis</h2>
-    <form>
+    <form action="https://formsubmit.co/pcitravaux28@gmail.com" method="POST">
       <div class="f-row-double">
         <div class="f-row">
           <label>Prénom</label>
-          <input type="text" placeholder="Jean">
+          <input type="text" name="prenom" placeholder="Jean" required>
         </div>
         <div class="f-row">
           <label>Nom</label>
-          <input type="text" placeholder="Dupont">
+          <input type="text" name="nom" placeholder="Dupont" required>
         </div>
       </div>
       <div class="f-row">
         <label>Téléphone</label>
-        <input type="tel" placeholder="06 XX XX XX XX">
+        <input type="tel" name="telephone" placeholder="06 XX XX XX XX">
       </div>
       <div class="f-row">
         <label>Email</label>
-        <input type="email" placeholder="jean@exemple.fr">
+        <input type="email" name="email" placeholder="jean@exemple.fr" required>
       </div>
       <div class="f-row">
         <label>Type de travaux</label>
-        <select>
+        <select name="type_travaux">
           <option value="">— Choisissez —</option>
           <option>Peinture intérieure</option>
           <option>Peinture extérieure</option>
@@ -228,8 +228,17 @@
       </div>
       <div class="f-row">
         <label>Description du projet</label>
-        <textarea placeholder="Décrivez votre chantier, la superficie approximative, vos contraintes particulières..."></textarea>
+        <textarea name="message" placeholder="Décrivez votre chantier, la superficie approximative, vos contraintes particulières..." required></textarea>
       </div>
+
+      <!-- Options FormSubmit -->
+      <input type="hidden" name="_subject" value="Nouvelle demande de devis - PCI Travaux">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="https://votresite.com/merci.html">
+      <!-- honeypot anti-spam, ne pas renommer -->
+      <input type="text" name="_honey" style="display:none">
+
       <button type="submit" class="f-submit">Envoyer ma demande →</button>
     </form>
   </div>
